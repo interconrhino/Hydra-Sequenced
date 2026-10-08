@@ -8,11 +8,12 @@
 
 ## Why
 
-I built this for my own Explorer and use it there; every release is tested on my own unit. I'm sharing it so others can enjoy a better standalone Hydrasynth, with no computer needed.
+I built this for my own Explorer and use it there. I'm sharing it so others can enjoy a better standalone Hydrasynth, with no computer needed.
 
 ## Features
 
-- **16 savable phrases, 64 steps.** Chords per step. Separate from patches, saved on the synth.
+- **Step sequencer.** In the arpeggiator, edited from the panel. Shift + Triplet opens it.
+- **Up to 16 savable phrases.** 64 steps each, chords per step. Separate from patches, saved on the synth.
 - **Step recording.** One key or chord per step; length is set when you stop.
 - **Per-step control.** Note, velocity, length, rest, tie and ratchet (×2 / ×4 / ×8).
 - **Trig conditions.** Probability, A:B, 1ST and !1ST, with a live play/skip indicator and cycle counter.
@@ -28,7 +29,7 @@ ASM's firmware is not included or hosted here. The patcher runs in your browser:
 
 1. You load the official Explorer 2.2.0 `.dat` from ASM.
 2. The patcher checks its SHA-256 against the official file.
-3. It adds the sequencer locally and verifies the result byte for byte against the tested build.
+3. It adds the sequencer locally and checks the result byte for byte against the release.
 4. You download the patched `.dat`.
 
 Nothing is uploaded.
@@ -52,13 +53,6 @@ Nothing is uploaded.
 - **Hydrasynth Explorer, firmware 2.2.0 only.**
 - Not for the Hydrasynth Keyboard, Deluxe, or other firmware versions. The patcher refuses any other file.
 
-## Testing
-
-- Each build runs in an emulator from power-on and is compared against the stock firmware.
-- With the sequencer unused, MIDI output and saved data match stock.
-- New code goes only into firmware areas proven unused; every hook is checked.
-- Each release is audited independently, then tested on hardware.
-
 ## Known limitations
 
 - Notes stop on a patch change, as on the stock firmware. Retrigger to continue a locked phrase.
@@ -72,6 +66,12 @@ Hydra-Sequenced is an independent hobby project. It is not made, endorsed, suppo
 The patcher and any firmware it produces are provided **"as is", without warranty of any kind**. Modifying your instrument's firmware may void its warranty and may cause malfunction, loss of data or damage to the device. You use this project **entirely at your own risk**. To the maximum extent permitted by law, the authors and contributors are not liable for any damages arising from its use.
 
 This repository does not host or distribute ASM's firmware. You obtain it from ASM yourself and are responsible for complying with ASM's terms.
+
+**Don't contact ASM support** about problems with this mod. Flash the official firmware first, then contact ASM if the problem remains.
+
+**No support promised.** This is a hobby project; fixes, updates and help are not guaranteed.
+
+**Official updates replace it.** Installing an official ASM firmware update removes the sequencer.
 
 ## License
 

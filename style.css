@@ -256,3 +256,7 @@ ol.sub-steps b { color: var(--text); }
 .legal b { color: var(--text); }
 .ack { display: flex; align-items: center; gap: 8px; color: var(--text-dim); font-size: 14px; width: 100%; }
 .ack input { accent-color: var(--orange); width: 16px; height: 16px; }
+ul.plain { margin: 0; padding-left: 18px; color: var(--text-dim); font-size: 15px; }
+ul.plain li { margin: 7px 0; }
+ul.plain li::marker { color: var(--orange); }
+ul.plain b { color: var(--text); }

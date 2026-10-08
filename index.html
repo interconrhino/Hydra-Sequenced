@@ -17,6 +17,7 @@
     <a class="brand" href="index.html"><span class="led"></span>HYDRA-SEQUENCED <span class="badge">unofficial</span></a>
     <nav class="links">
       <a class="on" href="index.html">Features</a>
+      <a href="tech.html">Boring Details</a>
       <a href="download.html">Download</a>
     </nav>
   </div>
@@ -25,8 +26,8 @@
 <main class="wrap">
 
   <div class="hero">
-    <div class="eyebrow">Unofficial step sequencer for the Hydrasynth Explorer &middot; firmware 2.2.0</div>
-    <h1>A real <em>step sequencer</em>,<br>right on the panel.</h1>
+    <div class="eyebrow">Unofficial firmware mod &middot; firmware 2.2.0</div>
+    <h1>A real <em>step sequencer</em><br>for Hydrasynth Explorer.</h1>
     <p class="lede">Step recording, ratchets, trig conditions, Euclidean rhythms, a randomiser and phrase lock. No computer needed.</p>
     <div class="cta">
       <a class="btn primary" href="download.html">Get the patcher</a>
@@ -56,32 +57,45 @@
     <h2>Features</h2>
     <div class="grid">
       <div class="card">
-        <h3>16 savable phrases, 64 steps</h3>
-        <p>Chords per step. Separate from patches, saved on the synth.</p>
+        <h3>Step sequencer</h3>
+        <p>A step sequencer in the arpeggiator, edited from the panel. <kbd>Shift</kbd>+<kbd>Triplet</kbd> opens it.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li><kbd>ARP</kbd> on, <b>Mode</b> &rarr; Phrase.</li>
-          <li><b>Phrase</b>: 1&ndash;16.</li>
-          <li>Record or edit.</li>
-          <li><b>SlotOp</b> &rarr; <code>Save&gt;n</code>, push. <code>*</code> = overwrite.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd>: sequencer page (ClkLock, SeqRec, PhrLock, SeqStps).</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> again, or push <b>SeqStps</b>: step editor.</li>
+          <li>Step editor screens: Step, Note, Type, TrigCond | Vel, Len, StpOffst, SlotOp.</li>
+          <li><kbd>Exit</kbd> to leave.</li>
+        </ol></details>
+      </div>
+      <div class="card">
+        <h3>Up to 16 savable phrases</h3>
+        <p>64 steps each, chords per step. Separate from patches, saved on the synth.</p>
+        <details class="how"><summary>How to</summary><ol>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> twice: step editor.</li>
+          <li>Record or edit the phrase.</li>
+          <li>Screen 2: <b>SlotOp</b> &rarr; <code>Save&gt;n</code>, push. <code>*</code> = overwrite.</li>
         </ol></details>
       </div>
       <div class="card">
         <h3>Step recording</h3>
         <p>One key or chord per step. Length is set when you stop.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li><b>Phrase</b>: 1&ndash;16.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16. This is the slot you record into.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd>: sequencer page.</li>
           <li><b>SeqRec</b> on. <b>SeqStps</b> counts steps.</li>
-          <li>Play each step in order.</li>
-          <li><b>SeqRec</b> off, then <code>Save&gt;n</code>.</li>
+          <li>Play each step in order, a key or chord per step.</li>
+          <li><b>SeqRec</b> off. <kbd>Shift</kbd>+<kbd>Triplet</kbd> again, then <b>SlotOp</b> &rarr; <code>Save&gt;n</code>, push.</li>
         </ol></details>
       </div>
       <div class="card">
         <h3>Per-step control</h3>
         <p>Note, velocity, length, rest, tie and ratchet (&times;2 / &times;4 / &times;8) on every step.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> twice, or push <b>SeqStps</b>.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> twice: step editor.</li>
           <li><b>Step</b>: select the step.</li>
-          <li><b>Note</b>, <b>Vel</b>, <b>Len</b>, <b>Type</b>: edit it.</li>
+          <li>Screen 1: <b>Note</b>, <b>Type</b>. Screen 2: <b>Vel</b>, <b>Len</b>.</li>
           <li><b>SlotOp</b> &rarr; <code>Save&gt;n</code> to keep.</li>
         </ol></details>
       </div>
@@ -89,29 +103,34 @@
         <h3>Trig conditions</h3>
         <p>Probability, A:B, 1ST and !1ST, with a live play/skip indicator.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li>Step editor: select the step, turn <b>TrigCond</b>.</li>
-          <li>Below 100%: probability. Detent at 100%.</li>
-          <li>Above: <code>1:2</code> &hellip; <code>4:4</code>, <code>1ST</code>, <code>!1ST</code>.</li>
-          <li><b>Step</b> shows the cycle (<code>L2</code>); <b>TrigCond</b> shows <code>+</code> / <code>-</code>.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> twice: step editor.</li>
+          <li><b>Step</b>: select the step, then turn <b>TrigCond</b>.</li>
+          <li>Below 100%: probability. Detent at 100%. Above: <code>1:2</code> &hellip; <code>4:4</code>, <code>1ST</code>, <code>!1ST</code>.</li>
+          <li>While playing, <b>Step</b> shows the cycle (<code>L2</code>) and <b>TrigCond</b> shows <code>+</code> / <code>-</code>.</li>
+          <li><b>SlotOp</b> &rarr; <code>Save&gt;n</code> to keep.</li>
         </ol></details>
       </div>
       <div class="card">
         <h3>Euclidean generator</h3>
         <p>Steps, hits, rotation. Live preview, then apply or cancel.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li><b>SlotOp</b> &rarr; <code>Eucl?</code>, push.</li>
-          <li>First screen: <b>Steps</b>, <b>Hits</b>, <b>Rotate</b>, <b>Notes</b>.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd> twice: step editor.</li>
+          <li>Screen 2: <b>SlotOp</b> &rarr; <code>Eucl?</code>, push.</li>
+          <li>Screen 1: <b>Steps</b>, <b>Hits</b>, <b>Rotate</b>, <b>Notes</b>. You hear it live.</li>
           <li>Push <b>SlotOp</b> to apply, <kbd>Exit</kbd> to cancel.</li>
-          <li><code>Save&gt;n</code> to keep.</li>
+          <li><b>SlotOp</b> &rarr; <code>Save&gt;n</code> to keep.</li>
         </ol></details>
       </div>
       <div class="card">
         <h3>Phrase lock</h3>
         <p>Phrase and arp settings stay put while you browse patches. Patches are never changed.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li>Set up the phrase and arp.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li><kbd>Shift</kbd>+<kbd>Triplet</kbd>: sequencer page.</li>
           <li><b>PhrLock</b> on.</li>
-          <li>Browse. Held values show <code>*</code>.</li>
+          <li>Browse patches. Held values show <code>*</code>.</li>
           <li><b>PhrLock</b> off restores each patch's own settings.</li>
         </ol></details>
       </div>
@@ -119,10 +138,10 @@
         <h3>Randomiser</h3>
         <p>Variations from the phrase's own notes: octave jumps, rests, ties, velocity. Whole phrase or one step.</p>
         <details class="how"><summary>How to</summary><ol>
-          <li>Whole phrase: hold <kbd>Random</kbd>, push <b>SeqStps</b>. <code>Random?</code> appears.</li>
-          <li>Press <kbd>Random</kbd> again to apply, <kbd>Exit</kbd> to cancel.</li>
-          <li>One step: in the step editor, hold <kbd>Random</kbd> and push <b>Step</b>.</li>
-          <li>Step 1 is kept. <code>Save&gt;n</code> to keep.</li>
+          <li>Press <kbd>ARP ON</kbd>. <kbd>Shift</kbd>+<kbd>ARP ON</kbd> opens the arp pages: <b>Mode</b> &rarr; Phrase, <b>Phrase</b> &rarr; 1&ndash;16.</li>
+          <li>Whole phrase: <kbd>Shift</kbd>+<kbd>Triplet</kbd>: sequencer page. Hold <kbd>Random</kbd>, push <b>SeqStps</b>. Press <kbd>Random</kbd> again at <code>Random?</code> to apply, <kbd>Exit</kbd> to cancel.</li>
+          <li>One step: <kbd>Shift</kbd>+<kbd>Triplet</kbd> twice: step editor. Select it with <b>Step</b>, then hold <kbd>Random</kbd> and push <b>Step</b>.</li>
+          <li>Step 1 is kept. <b>SlotOp</b> &rarr; <code>Save&gt;n</code> to keep.</li>
         </ol></details>
       </div>
     </div>
@@ -217,16 +236,7 @@
 
   <section id="why">
     <h2>Why</h2>
-    <p class="sub">I built this for my own Explorer and use it there; every release is tested on my own unit. I'm sharing it so others can enjoy a better standalone Hydrasynth, with no computer needed.</p>
-  </section>
-
-  <section id="quality">
-    <h2>Testing</h2>
-    <div class="grid">
-      <div class="card"><h3>Emulated from power-on</h3><p>Every build runs in an emulator against the stock firmware.</p></div>
-      <div class="card"><h3>Stock when idle</h3><p>MIDI output and saved data match stock with the sequencer unused.</p></div>
-      <div class="card"><h3>Audited</h3><p>Each release is audited independently, then tested on hardware.</p></div>
-    </div>
+    <p class="sub">I built this for my own Explorer and use it there. I'm sharing it so others can enjoy a better standalone Hydrasynth, with no computer needed.</p>
   </section>
 
   <section id="limits">
@@ -269,7 +279,7 @@
   })();
 </script>
 <script>
-  // The display mock follows the playhead through a 16-step phrase built from two
+  // The display mock plays a 16-step phrase built from two
   // public-domain themes: Bach's Prelude in C (BWV 846) and Grieg's "In the Hall of
   // the Mountain King". Every cell changes each step. A:B / 1ST / !1ST show + or -
   // for the current cycle; cycle n counts from 0, L = n mod 12 + 1, as on the synth.
@@ -280,7 +290,7 @@
       ['B3', 'Note', '!1ST'], ['C#4', 'x2', '90%'], ['D4', 'Note', '3:4'], ['E4', 'x8', '100%'],
       ['F#4', 'Note', '25%'], ['D4', 'x2', '1:3'], ['F#4+B4', 'Note', '100%'], ['F#4', 'Tie', '2:2']
     ];
-    var play = 0, n = 0;
+    var EDIT = 3, play = 0, n = 0;   // the edit cursor stays put; the playhead runs
     var el = function (id) { return document.getElementById(id); };
     function mark(c) {
       if (c === '1ST') return n === 0 ? ' +' : ' -';
@@ -291,7 +301,7 @@
     }
     function draw() {
       var st = P[play];
-      el('dStep').textContent = (play + 1) + '>' + (play + 1) + 'L' + (n % 12 + 1);
+      el('dStep').textContent = EDIT + '>' + (play + 1) + 'L' + (n % 12 + 1);
       el('dNote').textContent = st[0];
       el('dType').textContent = st[1];
       el('dCond').textContent = st[2] + mark(st[2]);

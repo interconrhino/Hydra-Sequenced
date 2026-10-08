@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boring Details</title>
+<meta name="description" content="Technical specification of Hydra-Sequenced: how it edits the Hydrasynth Explorer firmware, where it stores phrases, and what the patcher changes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="led"></span>HYDRA-SEQUENCED <span class="badge">unofficial</span></a>
+    <nav class="links">
+      <a href="index.html">Features</a>
+      <a class="on" href="tech.html">Boring Details</a>
+      <a href="download.html">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" style="padding-bottom:12px">
+    <h1>Boring <em>details</em>.</h1>
+    <p class="lede">What the patch changes in the firmware, where your phrases live, and how the sequencer runs.</p>
+  </div>
+
+  <section style="border-top:0;padding-top:12px">
+    <div class="tablebox">
+      <table>
+        <tr><th>Spec</th><th>Value</th></tr>
+        <tr><td>Target</td><td>Hydrasynth Explorer, firmware 2.2.0</td></tr>
+        <tr><td>Changed</td><td>Main processor image (ARM9) only. Panel controller and container header byte-identical.</td></tr>
+        <tr><td>New code</td><td>15,216 bytes of ARM assembly</td></tr>
+        <tr><td>Hooks</td><td>40 branch hooks, 1 patched word</td></tr>
+        <tr><td>Phrases</td><td>16 slots &times; up to 64 steps, chords per step, 390 bytes per slot</td></tr>
+        <tr><td>Engine</td><td>Arpeggiator Phrase mode, 192 PPQN, up to 127 note events per phrase</td></tr>
+        <tr><td>Storage</td><td>Separate flash window, written only on <code>Save&gt;n</code></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div>
+        <h2>Finding room</h2>
+        <p class="sub">The stock firmware has no free space.</p>
+        <ul class="plain">
+          <li>New code replaces stock code that can never run: unreachable features, unused helpers, removed tasks. About 26 KB of it exists.</li>
+          <li>A region qualifies only with no callers, no pointers into it and no data reads.</li>
+          <li>The new code is split across those regions and linked to fit them.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Hooks</h2>
+        <p class="sub">How the firmware reaches the new code.</p>
+        <ul class="plain">
+          <li>Each hook replaces one stock instruction with a branch into new code.</li>
+          <li>The new code redoes or replaces that instruction, then returns to stock.</li>
+          <li>Hooks sit in the arp engine's step commit, patch load and save, the UI's page and knob handlers, buttons, RANDOM and the main loop.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div>
+        <h2>Menus</h2>
+        <p class="sub">Added through the firmware's own page tables.</p>
+        <ul class="plain">
+          <li>ClkLock, SeqRec, PhrLock and SeqStps sit on the arp's second page.</li>
+          <li>The step editor is a new two-screen page, reached by a SeqStps push or <kbd>Shift</kbd>+<kbd>Triplet</kbd>.</li>
+          <li>Item names and ranges live in the firmware's initialised data, which is stored compressed. The patch decompresses it, adds the entries and recompresses it into the original 65,940-byte slot.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Storage</h2>
+        <p class="sub">Phrases are kept apart from patches.</p>
+        <ul class="plain">
+          <li>The bank (16 slots plus a 16-byte lock block) lives in an unused RAM area while the synth runs.</li>
+          <li>It persists to a free window in the synth's flash, read at boot.</li>
+          <li>It is written only by <b>SlotOp &rarr; Save&gt;n</b>, inside the firmware's own flash-write sequence with audio paused.</li>
+          <li>Patch saves never touch it, and the stock firmware ignores it.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Playback</h2>
+    <div class="grid">
+      <div class="card"><h3>Phrase format</h3><p>Your steps compile to the same event list the factory phrases use. Phrase 1&ndash;16 play your slot when it holds a phrase.</p></div>
+      <div class="card"><h3>Ratchets</h3><p>&times;2 / &times;4 / &times;8 subdivide the step, with a floor of 4 ticks per hit.</p></div>
+      <div class="card"><h3>Trig conditions</h3><p>One decision per step, so a chord and its ratchets play or skip together. The cycle counter runs 1&ndash;12 and resets on a fresh start, retrig, phrase change or lock change.</p></div>
+      <div class="card"><h3>Euclidean</h3><p>Step <i>i</i> is a hit when ((<i>i</i> &minus; rotate) &times; hits) mod steps &lt; hits. Previewed in a scratch copy; the slot is written only on apply.</p></div>
+      <div class="card"><h3>Randomiser</h3><p>Uses the firmware's RNG: octave moves, rests, ties and velocity changes drawn from the phrase's own notes. Step 1 is kept.</p></div>
+      <div class="card"><h3>Phrase lock</h3><p>On each patch load the engine gets the locked values; the patch's own are restored behind it, so a saved patch keeps its own arp settings.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The patcher</h2>
+    <p class="sub">Ships only the sequencer: new code, hook branches and menu entries. No ASM firmware.</p>
+    <ol class="flow">
+      <li><h3>Check</h3><p>The input must be the official Explorer 2.2.0 <code>.dat</code>, by size and SHA-256.</p></li>
+      <li><h3>Edit</h3><p>Code regions and hooks are written into the main image, each hook's original instruction checked first. The data area is decompressed, extended and recompressed.</p></li>
+      <li><h3>Verify</h3><p>The result must match the release byte for byte, or there's no download. Runs entirely in your browser.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <p class="sub">Built using <a href="https://claude.com/claude-code" rel="noopener" target="_blank">Claude Code</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Unofficial.</b> Not made, endorsed or supported by ASM. Hydrasynth is a trademark of its owner. Provided as is, at your own risk; see the <a href="download.html#disclaimer">disclaimer</a>.</p>
+  </div>
+</footer>
+</body>
+</html>
