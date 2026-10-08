@@ -40,10 +40,11 @@ Nothing is uploaded.
 2. Open the [patcher](https://interconrhino.github.io/Hydra-Sequenced/download.html), load `Hydrasynth_Explorer_Firmware_2.2.0.dat` and build.
 3. Flash with ASM Manager:
    1. Back up your patches.
-   2. Explorer off, connected over USB.
-   3. Hold **ARP ON** + **LATCH** while switching it on (update mode).
-   4. In ASM Manager, update firmware from a local file and load the patched `.dat`.
-   5. Don't disconnect until it finishes, then restart.
+   2. Connect the Explorer over USB.
+   3. Power it on holding **ARP ON** + **LATCH**; release when the HYDRASYNTH logo appears.
+   4. On ASM Manager's firmware update page, **Select File** and pick the patched `.dat`.
+   5. **Start Update**. Don't disconnect until the progress bar completes (2/2).
+   6. Reboot the Explorer.
 4. **Shift + Triplet** opens the sequencer.
 
 **Back to stock:** flash ASM's original 2.2.0 file the same way.
