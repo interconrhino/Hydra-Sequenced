@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hydra-Sequenced Download</title>
+<meta name="description" content="Patch your own copy of the Hydrasynth Explorer 2.2.0 firmware in the browser. Nothing is uploaded.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span class="led"></span>HYDRA-SEQUENCED <span class="badge">unofficial</span></a>
+    <nav class="links">
+      <a href="index.html">Features</a>
+      <a class="on" href="download.html">Download</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" style="padding-bottom:12px">
+    <div class="eyebrow">Runs in your browser &middot; nothing is uploaded</div>
+    <h1>Build your <em>firmware</em> in four steps.</h1>
+    <p class="lede">Bring the official 2.2.0 file. The sequencer is added locally.</p>
+  </div>
+
+  <section style="border-top:0;padding-top:12px">
+    <ol class="flow">
+      <li>
+        <h3>Download the official firmware</h3>
+        <p><b>Hydrasynth Explorer firmware 2.2.0</b> from <a href="https://www.ashunsoundmachines.com/" rel="noopener" target="_blank">ASM</a>. Unzip it for <code>Hydrasynth_Explorer_Firmware_2.2.0.dat</code>. 2.2.0 only.</p>
+        <details class="how"><summary>Expected checksum</summary><p class="hash" style="margin-top:8px">SHA-256 <span id="stockSha"></span></p></details>
+      </li>
+
+      <li>
+        <h3>Drop it here</h3>
+        <p>Checked against the official 2.2.0 checksum.</p>
+        <label class="drop" id="drop" for="file">
+          <strong>Drop the .dat file here</strong>
+          <p>or click to choose it</p>
+          <input id="file" type="file" accept=".dat" hidden>
+        </label>
+        <div class="status" id="status">Waiting for a file.</div>
+      </li>
+
+      <li>
+        <h3>Build the patched file</h3>
+        <p>Verified byte for byte against the tested build.</p>
+        <div style="margin-top:12px; display:flex; gap:12px; flex-wrap:wrap; align-items:center">
+          <label class="ack"><input type="checkbox" id="ack"> I've read the <a href="#disclaimer">disclaimer</a> and accept the risk.</label>
+          <button class="btn primary" id="build" disabled>Build and download</button>
+          <span class="caption" id="buildNote">Version <span id="ver"></span></span>
+        </div>
+        <div class="status" id="buildStatus" hidden></div>
+      </li>
+
+      <li>
+        <h3>Flash it with ASM Manager</h3>
+        <p>Same process as an official ASM firmware update, using the patched file.</p>
+        <div class="note warn" style="margin-top:12px"><strong>At your own peril.</strong> Unofficial firmware, made for my own Explorer and tested only on it (firmware 2.2.0). Never flash it to a keyboard or Deluxe.</div>
+        <ol class="sub-steps">
+          <li><b>Back up.</b> Save your patches in ASM Manager first.</li>
+          <li><b>Connect.</b> Explorer powered off, USB cable to your computer.</li>
+          <li><b>Boot into update mode.</b> Hold <kbd>ARP ON</kbd> + <kbd>LATCH</kbd> while switching the Explorer on.</li>
+          <li><b>Open ASM Manager</b> and choose its firmware update option, from a local file.</li>
+          <li><b>Load the patched <code>.dat</code></b> and start the update. Don't disconnect or power off until it finishes.</li>
+          <li><b>Restart.</b> <kbd>Shift</kbd>+<kbd>Triplet</kbd> opens the sequencer.</li>
+        </ol>
+        <p class="caption" style="margin-top:10px">Follow ASM's own update instructions where they differ. Back to stock: same steps with ASM's original 2.2.0 file.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="disclaimer">
+    <h2>Disclaimer</h2>
+    <div class="legal">
+      <p><b>Unofficial.</b> Hydra-Sequenced is an independent hobby project. It is not made, endorsed, supported or approved by Ashun Sound Machines (ASM). Hydrasynth is a trademark of its owner and is used here only to describe compatibility.</p>
+      <p><b>No warranty.</b> The patcher and any firmware it produces are provided &ldquo;as is&rdquo;, without warranty of any kind, express or implied, including merchantability, fitness for a particular purpose and non-infringement.</p>
+      <p><b>Your risk.</b> Modifying your instrument's firmware may void its warranty and may cause malfunction, loss of data or damage to the device. You use this project entirely at your own risk. It has been tested only on the Hydrasynth Explorer with firmware 2.2.0.</p>
+      <p><b>No liability.</b> To the maximum extent permitted by law, the authors and contributors are not liable for any direct, indirect, incidental or consequential damages, including loss of data, loss of use or repair costs, arising from the use of this project.</p>
+      <p><b>No ASM firmware here.</b> This site does not host or distribute ASM's firmware. You obtain it from ASM yourself and are responsible for complying with ASM's terms.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="split">
+      <div class="note warn"><strong>At your own risk.</strong> Unofficial firmware, not supported by ASM. May affect your warranty.</div>
+      <div class="note"><strong>Back to stock:</strong> flash ASM's original 2.2.0 file the same way.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Unofficial.</b> Not made, endorsed or supported by ASM. Hydrasynth is a trademark of its owner. Provided as is, at your own risk; see the <a href="download.html#disclaimer">disclaimer</a>.</p>
+    <p>Your file never leaves your computer.</p>
+  </div>
+</footer>
+
+<script src="patcher.js"></script>
+</body>
+</html>
