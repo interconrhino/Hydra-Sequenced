@@ -41,7 +41,7 @@ Nothing is uploaded.
 3. Flash with ASM Manager:
    1. Back up your patches.
    2. Connect the Explorer over USB.
-   3. Power it on holding **ARP ON** + **LATCH**; release when the HYDRASYNTH logo appears.
+   3. Power it on holding **ARP ON** + **LATCH**; release when the HYDRASYNTH logo appears. In update mode the screen stays on the logo and doesn't continue booting. If it boots normally, power off and try again.
    4. On ASM Manager's firmware update page, **Select File** and pick the patched `.dat`.
    5. **Start Update**. Don't disconnect until the progress bar completes (2/2).
    6. Reboot the Explorer.
