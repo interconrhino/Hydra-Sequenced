@@ -1,0 +1,65 @@
+{
+  "format": "impactcorps-progress/3",
+  "project": "Hydra-Sequenced",
+  "onboarding": "done",
+  "look": "corporate",
+  "roadmap": {
+    "setup": {
+      "ai-app": "done",
+      "github": "to-do",
+      "tracker": "done"
+    },
+    "shape": {
+      "prd": "design",
+      "user-flow": "not-started"
+    },
+    "build": {
+      "frontend": "not-started",
+      "backend": "not-started",
+      "database": "not-started"
+    },
+    "ship": {
+      "security": "not-started",
+      "deploy": "not-started"
+    }
+  },
+  "loop": {
+    "focusArea": "prd",
+    "step": 1,
+    "objective": "Write my first PRD"
+  },
+  "game": {
+    "halfLives": 10,
+    "score": 0,
+    "aiWins": 0,
+    "round": 1,
+    "session": 0,
+    "hidden": 0,
+    "warmUp": "to-do",
+    "lastMiss": "",
+    "run": 0,
+    "best": 0
+  },
+  "badges": {
+    "product": [],
+    "frontend": [],
+    "backend": [],
+    "database": [],
+    "security": [],
+    "deploy": []
+  },
+  "learned": [],
+  "draft": {
+    "question": "",
+    "options": [],
+    "picked": null
+  },
+  "deck": {
+    "product": [],
+    "frontend": [],
+    "backend": [],
+    "database": [],
+    "security": [],
+    "deploy": []
+  }
+}
